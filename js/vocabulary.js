@@ -197,7 +197,6 @@ class Vocabulary{
 			for(let key of Object.keys(data)){
 				this[key] = data[key];
 			}
-			//this.update();
 		}
 	}
 	clear(){

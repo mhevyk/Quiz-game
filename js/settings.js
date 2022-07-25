@@ -11,8 +11,9 @@ class Settings{
 	load(){
 		let JSONData = localStorage.getItem("_settingsData");
 		if(JSONData){
+			//fill vocabulary flags object with stored data in browser, and setting inputs checked attr
 			const data = JSON.parse(JSONData);
-			let exportObj = {};
+			const exportObj = {};
 			for(let key of Object.keys(data)){
 				exportObj[key] = data[key];
 				$(`#${key}`).attr("checked", data[key]);
@@ -29,12 +30,12 @@ class Settings{
 		voc.update();
 	}
 	save(){
-		let data = {};
-		for(let i = 0; i < this.checkboxes.length; i++){
-			let item = this.checkboxes[i];
-			data[item.id] = item.checked;
+		const data = {};
+		//convert inputs "checked" to object with structure: [id] : [itemById.checked]
+		for(let checkbox of this.checkboxes){
+			data[checkbox.id] = checkbox.checked;
 		}
-		let JSONData = JSON.stringify(data);
+		const JSONData = JSON.stringify(data);
 		localStorage.setItem("_settingsData", JSONData);
 		return data;
 	}

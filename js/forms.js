@@ -23,10 +23,10 @@ const formSubmitCallbacks = {
 		const addSelect = $("#form-add-one-unit");
 		const unitInput = $("#form-unit-add-input");
 		const unit = unitInput.val().trim();
-		resetTextInput(unitInput);//очистка input з unitInput
+		resetTextInput(unitInput);
 
-		$(event.target).removeClass("was-validated");//очистка валідації форми
-		$('#modal-unit-add').modal("hide");//приховання модального вікна з id="modal-unit-add", яке вікривається при кліку на кпопку додати розділ
+		$(event.target).removeClass("was-validated");//reset colorful form validation
+		$('#modal-unit-add').modal("hide");
 
 		confirm.customShow({
 			title: "Додавання розділу",
@@ -34,8 +34,8 @@ const formSubmitCallbacks = {
 			submitButtonText: "Додати",
 			onSubmitHide: true,
 			onSubmit: () => {
-				addSelect.append(`<option value="${unit}">${unit}</option>`);//додавання option до 
-				addSelect.find("option").eq(-1).attr("selected", true); //робить активною першу ззаду(останню) опцію
+				addSelect.append(`<option value="${unit}">${unit}</option>`);
+				addSelect.find("option").eq(-1).attr("selected", true); //makes last option active
 			}
 		});
 	},
@@ -86,7 +86,7 @@ const formSubmitCallbacks = {
 			onSubmit: () => {
 				voc.remove(word);
 				voc.print();
-				resetTextInput(wordInput);//очитка input wordInput
+				resetTextInput(wordInput);
 			}
 		});
 	},
@@ -97,8 +97,8 @@ const formSubmitCallbacks = {
 		const word1 = word1Input.val().toLowerCase();
 		const word2 = word2Input.val().toLowerCase();
 
-		const wordsThatWillBeDeleted = voc.getRemoveRangeData(word1, word2).wordsToDelete;//отримання списку слів, які будуть видалені
-		const wordsThatWillBeDeletedBold = wordsThatWillBeDeleted.map(word => word.bold());//отримання списку слів, обернутих у тег <b>
+		const wordsThatWillBeDeleted = voc.getRemoveRangeData(word1, word2).wordsToDelete;//list of deleted words
+		const wordsThatWillBeDeletedBold = wordsThatWillBeDeleted.map(word => word.bold());//list of deleted words, but in <b> tag
 
 		confirm.customShow({
 			title: "Видалення діапазону слів",
@@ -129,7 +129,7 @@ const formSubmitCallbacks = {
 			}
 		});
 	},
-	"form-clear": function(){//функція, яка запускається при успішній валідації форми з id="form-clear"
+	"form-clear": function(){
 		confirm.customShow({
 			title: "Очистка словника",
 			body: "Справді очистити словник?",
@@ -184,7 +184,7 @@ $("#form-add-one-translates").click(event => {
 	}
 	$("#form-add-one-translates-count").text($(".form-add-one-translates-group").length);
 });
-$("#form-add-one").on("input", function(event){//ДОПИСАТИ ------------------------------------------------
+$("#form-add-one").on("input", function(event){
 	let word = $("#form-remove-one-input");
 	let translateInputs = $(this).find("input[type=text]:not(:focus)");
 	let currentValue = $(event.target).val();
@@ -228,7 +228,7 @@ function checkIfWordIsInVocabulary(event){
 	}
 }
 $("#form-remove-one-input").on("input", checkIfWordIsInVocabulary);
-$("#form-remove-range").on("input", function(event){//поки шо на костилях-----------------------------------------
+$("#form-remove-range").on("input", function(event){
 	let word1 = $("#form-remove-range-word1-input").val().toLowerCase();
 	let word2 = $("#form-remove-range-word2-input").val().toLowerCase();
 
