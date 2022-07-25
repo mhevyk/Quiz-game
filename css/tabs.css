@@ -1,0 +1,62 @@
+.tabs button:disabled{
+	background-color: dimgray;
+	color: rgba(255, 255, 255, 0.5);
+}
+.tabs .tab-header{
+	border: 0;
+	padding: 4px 0px;
+}
+.tabs .tab-header .fa-caret-down{
+	margin-left: 6px;
+}
+.tabs-navigation > .tab-headers > .tab-header{
+	background-color: lightgray;
+}
+.tabs-navigation > .tab-headers > .active{
+	background-color: transparent;
+}
+.tabs-navigation > .tab-headers > .tab-header:not(:last-child){
+	border-right: 1px solid grey;
+}
+.tabs-accordion > .tab-header, .tabs-toggle > .tab-header{
+	background-color: var(--color-a);
+	color: white;
+}
+.tabs-accordion > .tab-header:not(:last-child){
+	margin-bottom: 1px;
+}
+.tabs-accordion > .tab-content, .tabs-toggle > .tab-content{
+	border: 1px solid lightgray;
+	border-top: 0;
+}
+.tabs-toggle{
+	margin-bottom: 1px;
+}
+.tabs-accordion > .active, .tabs-toggle > .active{
+	background-color: transparent;
+	color: var(--color-a);
+	border: 1px solid var(--color-a);
+}
+.tabs-accordion > .active > .fa-caret-down, .tabs-toggle > .active > .fa-caret-down{
+	transform: rotate(180deg);
+}
+.tabs-accordion > .tab-header:not(:last-child){
+	border-right: 1px solid grey;
+}
+.tabs .tab-content{
+	padding: 10px 15px;
+}
+
+#tabs-action-add .tab-content{
+	min-height: 530px;
+}
+#tabs-action-remove .tab-content{
+	min-height: 390px;
+}
+#tabs-action-edit .tab-content{
+	min-height: 390px;
+}
+.game-separator{
+	height: 3px;
+	background-color: var(--color-a);
+}

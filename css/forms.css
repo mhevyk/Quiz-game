@@ -1,0 +1,100 @@
+.form-description-group{
+	text-align: center;
+	margin: 10px 2px 5px 2px;
+	color: grey;
+}
+.form-simple .form-group .form-group-header{
+	display: block;
+	font-weight: bold;
+	margin-bottom: 8px;
+	margin-right: 10px;
+}
+.form-check-input:checked{
+	background-color: var(--color-a) !important;
+	border-color: var(--color-a) !important;
+}
+.form-simple .form-group input[type=text]{
+	margin: 5px 0px;
+	display: inline;
+}
+.form-simple .form-group select{
+	border: 1px solid var(--color-d);
+	border-radius: 3px;
+	padding: 3px 8px;
+}
+.form-settings .form-group{
+	display: flex;
+	flex-direction: row;
+}
+.form-settings .form-group .form-group-name{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-grow: 2;
+}
+.form-settings .form-group .form-group-content{
+	flex-grow: 5;
+}
+.form-settings .form-group .form-group-settings-item{
+	border: 1px solid green;
+}
+.form-group{
+	margin: 15px 0px;
+}
+.form-group .fa-times{
+	color: red;
+	padding: 7px;
+	font-size: 14pt;
+}
+.form-submit-group{
+	margin-top: 20px;
+	padding: 10px 0px;
+	background-color: var(--grey-5);
+	display: flex;
+	justify-content: center;
+}
+input[type = "text"]{
+	width: auto;
+	padding: 3px 10px;
+	border: 1px solid var(--color-d);
+	border-radius: 3px;
+}
+input[type = "text"]:focus{
+	outline: 1px solid var(--color-d);
+}
+input[type = "text"]:hover{
+	cursor: auto;
+}
+input[type="file"]{
+	display: none;
+}
+.action-btn{
+	padding: 3px 16px;
+	border: 0;
+	border-radius: 5px;
+	border: 2px solid transparent;
+}
+.action-btn-dark{
+	transition: all .4s;
+	background-color: var(--color-b);
+	color: white;
+}
+.action-btn-dark:disabled{
+	opacity: 0.4;
+	color: white;
+}
+.action-btn-dark:hover:enabled, label[for="form-add-many-file-input"]:hover{
+	border: 2px solid var(--color-b);
+	color: var(--color-b);
+	background-color: transparent;
+}
+.action-btn-light{
+	transition: all .4s;
+	background-color: var(--color-c);
+	color: white;
+}
+.action-btn-light:hover{
+	border: 2px solid var(--color-c);
+	color: var(--color-c);
+	background-color: transparent;
+}

@@ -1,0 +1,19 @@
+#form-add-many-file-log div{
+	padding: 6px 20px;
+	margin-bottom: 4px;
+}
+#form-add-many-file-log .fa-file{
+	margin-right: 6px;
+}
+#form-add-many-file-log .bg-success-light .fa-file{
+	color: green;
+}
+#form-add-many-file-log .bg-danger-light .fa-file{
+	color: red;
+}
+.bg-success-light{
+	background-color: rgba(0, 128, 0, 0.3) !important;
+}
+.bg-danger-light{
+	background-color: rgba(255, 0, 0, 0.3) !important;
+}
