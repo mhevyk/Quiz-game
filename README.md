@@ -1,6 +1,8 @@
 # Quiz-game
 <p>It is a simple app for studying foreign languages. This project is based on JS ES6+, jQuery and Bootstrap technologies.</p>
 
+<p>It is first project, in which I used Git.</p>
+
 <p>Idea of this project appeared on 2019 and actively grown on 2022.</p>
 
 <h3>App has following functionallity:</h3>
