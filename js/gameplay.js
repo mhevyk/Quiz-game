@@ -97,7 +97,7 @@ $("#form-game-submit").click(function(){
 			}
 
 			//text, which was typed by user as answer to the question
-			const userAnswer = $("#game-answer").val();
+			const userAnswer = $("#game-answer").val().trim();
 
 			//add results of previous question to resultsOfTest storage
 			resultsOfTest.add({
