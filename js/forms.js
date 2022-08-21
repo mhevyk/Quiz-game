@@ -167,16 +167,23 @@ $("#form-unit-add-submit").click(event => {
 });
 $("#form-add-one-translates-add").click(event => {
 	const translatesInputGroups = $(".form-add-one-translates-group");
-	translatesInputGroups.eq(-1).after(
+
+	//create dom structure of new translate input and then putting it after last translate input
+	const newTranslateInput = $(
 		`<div class="form-add-one-translates-group">
 			<input type="text" name="translate" class="form-control" placeholder="Переклад" value="" required>
 			<i class="fas fa-times"></i>
 			<div class="invalid-feedback mb-2">
 				Введіть переклад!
 			</div>
-		</div>`
-	);
-	$("#form-add-one-translates-count").text($(".form-add-one-translates-group").length);
+		</div>`);
+	
+	newTranslateInput.find("input").on("input", replaceCommasInInput);
+	translatesInputGroups.eq(-1).after(newTranslateInput);
+
+	//printing length of input fields
+	const translateInputsCount = $(".form-add-one-translates-group").length;
+	$("#form-add-one-translates-count").text(translateInputsCount);
 });
 $("#form-add-one-translates").click(event => {
 	if($(event.target).hasClass("fa-times")){
@@ -331,11 +338,7 @@ $("#vocabulary-content").dblclick(event => {
 	}
 });
 //avoid to type comma
-$(`[data-comma-avoid="true"]`).on("input", event => {
-	const input = $(event.target);
-	const valueWithousCommas = input.val().replace(/\,/g, "");
-	input.val(valueWithousCommas);
-});
+$(`[data-comma-avoid="true"]`).on("input", replaceCommasInInput);
 
 const editWordSelect = $("#form-edit-manually-word");
 

@@ -77,3 +77,9 @@ function* counter(start){
 		yield ++count;
 	}
 }
+function replaceCommasInInput(event){
+	const input = $(event.target);
+	//allowed to type words width spaces only in ukrainian and english
+	const valueWithousCommas = input.val().replace(/[^іІїЇєЄґҐа-яА-Я\w ]/g, "");
+	input.val(valueWithousCommas);
+}
