@@ -17,6 +17,11 @@ function shuffle(array){//mix array
 function getRandomArrayItem(array){
 	return array[Math.floor(Math.random() * array.length)];
 }
+function resetFormAddOne(form){
+	form.reset();
+	$(form.translate).parent().not(":first").remove();
+	$("#form-add-one-translates-count").text(1);
+}
 function validateTranslates(translateString){
 	const translates = translateString.split(",");
 	const trimmedTranslates = translates.map(translate => translate.trim());

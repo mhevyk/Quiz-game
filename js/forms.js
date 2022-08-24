@@ -15,6 +15,10 @@ const formSubmitCallbacks = {
 			onSubmitHide: true,
 			onSubmit: () => {
 				voc.add(word, translates, unit);
+
+				//reset form and remove a lot of translates
+				resetFormAddOne(event.target);
+
 				voc.print();
 			}
 		});
@@ -190,6 +194,12 @@ $("#form-add-one-translates").click(event => {
 		$(event.target).parent().remove();
 	}
 	$("#form-add-one-translates-count").text($(".form-add-one-translates-group").length);
+});
+$("#form-add-one").click(function(event){
+	const clicked = $(event.target);
+	if(clicked.data("role") === "reset"){
+		resetFormAddOne(this);
+	}
 });
 $("#form-add-one").on("input", function(event){
 	let word = $("#form-remove-one-input");
