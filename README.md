@@ -24,7 +24,7 @@
     <li><b>Editing records.</b> We can edit word by double-click on in on vocabulary (on PC or laptop) or using a form element.</li>
     <li><b>Custom deleting records in vocabulary.</b> Allows you to delete single word, range of words, unit (group of records) or even all records to clear vocabulary.</li>
     <li><b>Export records in units in .zip format for reusing it.</b> We can download .zip file in one click and store it on computer while we don`t need to load it again.</li>
-    <li><b>Basic search.</b> We can search by start of the word using "word" column.</li>
+    <li><b>Words search.</b> We can search by word or translate fields.</li>
     <li><b>Save after page reload.</b> Loaded words save in localStorage and live until it is deleted.</li>
   </ol>
 <h4>STATISTIC</h4>
