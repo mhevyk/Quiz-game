@@ -228,7 +228,7 @@ $("#form-add-one").on("input", function(event){
 	});
 })
 function checkIfWordIsInVocabulary(event){
-	let word = voc.voc.find(a => a.word === event.target.value.toLowerCase());
+	let word = voc.voc.find(a => a.word.toLowerCase() === event.target.value.toLowerCase());
 	let invalidFeedback = $(event.target).parent().find(".invalid-feedback");
 	let validFeedback = $(event.target).parent().find(".valid-feedback");
 	if(word){

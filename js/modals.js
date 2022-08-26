@@ -43,7 +43,6 @@ class Modal{
 			}
 		});
 		this.link.on("shown.bs.modal", () => {
-			console.log("ON SHOW")
 			if(props.onShow && typeof props.onShow === "function"){
 				props.onShow();
 			}
@@ -81,7 +80,7 @@ class Modal{
 		this.modalParts.submitBtn.text(text);
 	}
 	cancelBtn(text){
-		this.modalParts.calcelBtn.text(text);
+		this.modalParts.cancelBtn.text(text);
 	}
 	disable(part, delayTime = 0){
 		if(part in this.modalParts && part.includes("Btn")){
