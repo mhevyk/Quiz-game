@@ -83,6 +83,10 @@ class ToggleTabs extends Tabs{
 
 		super.init();
 	}
+	hide(){
+		this.headers.removeClass("active");
+		this.contents.hide();
+	}
 	setActive(index){
 		this.headers.toggleClass("active");
 		this.contents.slideToggle();

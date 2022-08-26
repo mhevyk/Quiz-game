@@ -1,5 +1,3 @@
-let gameCounter = counter(0);
-
 class ResultStorage{
 	constructor(){
 		this.questions = [];
@@ -82,8 +80,9 @@ class ResultStorage{
 
 		//additionary text, that reminds to watch statistic page to check answers and results
 		resultText += `
-				<div class="text-center pt-2 text-muted">
-					<small>Детальну інформацію можна переглянути у розділі <b>"Статистика"</b></small>
+				<div class="pt-1 text-muted">
+					<small>Тестування було зараховане, а всі його відповіді - записані</small><br>
+					<small><b class="link link-to-statistic">Переглянути результат тестування</b></small>
 				</div>`;
 
 		let statisticTable = $("#statistic-table");
@@ -102,8 +101,9 @@ class ResultStorage{
 				<div class="tab-content p-0">${this.printHTML(gameNumber, {mr: listWithResults, gqc: this.questions.length})}</div>
 			</div>
 		`);
+
 		//init game wrapper as toggleTabs
-		let gameToggleTabs = new ToggleTabs(`game${gameNumber}`);
+		gameTogglers.push(new ToggleTabs(`game${gameNumber}`));
 
 		//making toggle tabs of blocks
 		let questionToggleTabs;
@@ -117,6 +117,10 @@ class ResultStorage{
 		confirm.hide("cancelBtn");
 		confirm.disable("submitBtn").enable("submitBtn", 1000);
 
+		console.log($(resultText));
+		console.log($(resultText).find("b.link-to-statistic"))
+		
+
 		confirm.customShow({
 			title: "Тестування закінчено!",
 			body: `${resultText}`,
@@ -124,7 +128,16 @@ class ResultStorage{
 			onSubmitHide: true,
 			onHide: () => {
 				confirm.show("cancelBtn");
+			},
+		});
+		confirm.modalParts.body.find(".link-to-statistic").on("click", () => {
+			confirm.hide();
+			linkToPage("_statistic");
+			//we slideUp all game togglers and set the last active
+			for(let i = 0; i < gameTogglers.length - 1; i++){
+				gameTogglers[i].hide();
 			}
+			gameTogglers.at(-1).setActive(0);
 		});
 	}
 }

@@ -43,6 +43,7 @@ class Modal{
 			}
 		});
 		this.link.on("shown.bs.modal", () => {
+			console.log("ON SHOW")
 			if(props.onShow && typeof props.onShow === "function"){
 				props.onShow();
 			}
@@ -52,6 +53,8 @@ class Modal{
 			if(props.onHide && typeof props.onHide === "function"){
 				props.onHide();
 			}
+			//removing content of modal
+			this.modalParts.body.html("");
 		});
 	}
 	show(part){

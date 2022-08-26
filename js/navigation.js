@@ -8,6 +8,11 @@ const tabsRemove = new NavigationTabs("tabs-action-remove");
 
 const confirm = new Modal("modal-confirm");
 
+//variable to count game count
+let gameCounter = counter(0);
+
+const gameTogglers = [];
+
 $(document).ready(() => {
 	//hide all pages and navigation arrows
 	$("#arrow-top, #arrow-extra-back, #arrow-back, .main-menu-content").hide();
@@ -41,15 +46,19 @@ $("#arrow-top").click(event => {
 });
 
 //switch pages
-$(".main-menu-link").click(event => {
+function linkToPage(event){
 	//closing main page
 	$("header, #main-menu").hide();
+	$(".main-menu-content").hide();
 
 	//opening page by link
 	$("#arrow-back").show();
-	let newPageLink = $(event.target).data("link");
+	//if event.target do not exists, it means that in is not any event and now event is string link name passed to function
+	let newPageLink = event.target ? $(event.target).data("link") : event;
 	$(`#${newPageLink}`).show();
-});
+}
+
+$(".main-menu-link").click(linkToPage);
 
 $("#arrow-back, #arrow-extra-back").click(event => {
 	//hiding current page
