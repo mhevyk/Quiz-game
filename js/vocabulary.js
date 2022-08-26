@@ -43,10 +43,12 @@ class Vocabulary{
 		updateAllSelects();
 
 		if(!this.units.length){
+			makeDisabled("#search > input");
 			makeDisabled("#form-game-submit");
 			resetAllForms();
 		}
 		else{
+			makeEnabled("#search > input");
 			makeEnabled("#form-game-submit");
 		}
 	}
