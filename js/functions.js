@@ -8,6 +8,14 @@ function unique(array){//повертає масив без повторюван
 function sleep(time){
 	return new Promise((resolve, reject) => { setTimeout(resolve, time); })
 }
+function debounce(func, time){
+	let timeout;
+	return function(){
+		const partlyCalledFunc = () => func.apply(this, arguments);
+		clearTimeout(timeout);
+		timeout = setTimeout(partlyCalledFunc, time);
+	}
+}
 function sortASC(array, compareCallback = null){//сортування літер за зростанням
 	return array.slice().sort((word1, word2) => compareCallback ? compareCallback(word1, word2) : word1.localeCompare(word2));
 }

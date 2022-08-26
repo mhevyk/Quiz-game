@@ -244,20 +244,26 @@ function checkIfWordIsInVocabulary(event){
 		invalidFeedback.text("Введіть слово!");
 	}
 }
-$("#form-remove-one-input").on("input", checkIfWordIsInVocabulary);
+
+const debouncedCheckIfWordIsInVocabulary = debounce(checkIfWordIsInVocabulary, 400);
+
+$("#form-remove-one-input").on("input", debouncedCheckIfWordIsInVocabulary);
 $("#form-remove-range").on("input", function(event){
 	let word1 = $("#form-remove-range-word1-input").val().toLowerCase();
 	let word2 = $("#form-remove-range-word2-input").val().toLowerCase();
 
-	checkIfWordIsInVocabulary(event);
+	debouncedCheckIfWordIsInVocabulary(event);
 	if(word1 === word2){
 		document.querySelector("#form-remove-range-word2-input").setCustomValidity("Слова співпадають!");
 		$("#form-remove-range-word2-input").parent().find(".invalid-feedback").text("Слова співпадають!");
 	}
 });
 
-$("#search-input").on("input", event => {
-	const records = voc.vocHTML.find(".row");
+const searchHandler = event => {
+	const subheaders = voc.vocHTML.find(".table-subheader");
+	event.target.value ? subheaders.hide() : subheaders.show();
+
+	const records = voc.vocHTML.find(".table-row");
 	const searchedToken = $(event.target).val().toLowerCase();
 
 	const noRecordFoundBlock = $("#voc-search-error");
@@ -268,10 +274,12 @@ $("#search-input").on("input", event => {
 	records.each(function(){
 		let row = $(this);
 		let record = row.children(".col");
-		let word = record.eq(0).text().toLowerCase();
+		const [wordContainer, translatesContainer] = record;
+
+		let recordText = (wordContainer.textContent + translatesContainer.textContent).toLowerCase();
 
 		//words are found only by start of the word
-		if(word.startsWith(searchedToken)){
+		if(recordText.includes(searchedToken)){
 			row.show();
 			filteredRecordsCount++;
 		}
@@ -282,11 +290,16 @@ $("#search-input").on("input", event => {
 	if(!filteredRecordsCount){
 		voc.vocHTML.append(
 			`<div id="voc-search-error" class="row empty-vocabulary-placeholder border-0" style="">
-				<div class="col">За вашим запитом нічого не знайдено!<br>Слово шукається за його початком по стовпцю "Слово"!</div>
+				<div class="col">За вашим запитом нічого не знайдено!</div>
 			</div>`
 		);
 	}
-});
+};
+
+//debounce uses to delay function call
+const debouncedSearchHandler = debounce(searchHandler, 400);
+
+$("#search-input").on("input", debouncedSearchHandler);
 $("#form-export-submit").click(function(event){
 	confirm.customShow({
 		title: "Експорт словника",
