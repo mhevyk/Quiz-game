@@ -15,11 +15,11 @@ function updateRangeForQuestionsCountInGame(props = {}){
 
 	range.min = 1;
 	//max has to be number and be bigger than min
-	const max = (typeof props.max === "number" && props.max > +range.min) ? props.max : voc.length();
+	const max = props.max || voc.length();
 	range.max = max;
 
 	//value has to be number and between min and max, if it is not true, average value is setting
-	const value = (typeof props.value === "number" && (props.value >= +range.min && props.value <= +range.max)) ? props.value : Math.floor(+range.max / 2);
+	const value = props.value || Math.floor(+range.max / 2);
 	range.value = value;
 
 	moveRangeLabel.call(range);
