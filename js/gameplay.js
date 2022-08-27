@@ -135,7 +135,9 @@ $("#form-game-submit").click(function(){
 				confirm.body(`<p>${getQuestionText(question)}</p> <input type="text" id="game-answer" placeholder="Переклад..."/>`);
 			}
 
-			voc.flags._colorHighlight ? sleep(400).then(goToNextQuestion) : goToNextQuestion();
+			const deboundedGoToNextQuestion = debounce(goToNextQuestion, 400);
+
+			voc.flags._colorHighlight ? deboundedGoToNextQuestion() : goToNextQuestion();
 		},
 		onHide: () => {
 			//then we quit confirm, we have to delete keyup event, because other confirms will have wrong keyup
