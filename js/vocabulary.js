@@ -218,12 +218,14 @@ class Vocabulary{
 
 		$(document).ready(() => {
 			const gameForm = $("#form-game");
-			gameForm.before(`
-				<div class="empty-vocabulary-placeholder">
-					<div class="col">Додайте слова у словник, щоб почати тестування!</div>
-				</div>
-			`);
-			gameForm.hide();
+			if(!$("#_game .empty-vocabulary-placeholder").length){
+				gameForm.before(`
+					<div class="empty-vocabulary-placeholder">
+						<div class="col">Додайте слова у словник, щоб почати тестування!</div>
+					</div>
+				`);
+				gameForm.hide();
+			}
 		})
 
 		//add div with text, that informs about empty vocabulary

@@ -7,3 +7,21 @@
     justify-content: center;
     align-items: center;
 }
+#settings-content .col{
+	position: relative;
+}
+#settings-content .col .fa-info-circle{
+	position: absolute;
+	top: 50%;
+	right: 3%;
+	transform: translate(0, -50%);
+}
+@media screen and (max-width: 600px){
+	#settings-content .table-row > .table-counter:first-child{
+		display: none;
+	}
+	#settings-content .col{
+		padding-right: 15%;
+		padding-left: 10%;
+	}
+}
