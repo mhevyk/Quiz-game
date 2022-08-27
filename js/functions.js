@@ -68,8 +68,7 @@ function updateAllSelects(){
 		const disabled = (voc.select(unit).length <= 1) ? "disabled" : "";
 		for(let select of $("select[data-content='unit']")){
 			//if dom-item has attr data-condition, it will be disabled if unit contains less or equal 1 word
-			const disableCondition = Boolean($(select).data("disabled")) ? disabled : "";
-			$(select).append(`<option value="${unit}" ${disableCondition}>${unit}</option>`);
+			$(select).append(`<option value="${unit}">${unit}</option>`);
 		}
 	}
 }

@@ -29,7 +29,7 @@ $("#form-game-questions-count-range").on("input", function(event){
 	moveRangeLabel.call(event.target);
 });
 
-$("#form-game-unit").on("change", function(event){
+$("#form-game-unit").on("change", function(){
 	const unitFromSelect = $(this).find(":selected").val();
 	updateRangeForQuestionsCountInGame({max: voc.select(unitFromSelect).length});
 });
