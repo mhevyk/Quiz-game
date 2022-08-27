@@ -152,8 +152,9 @@ class Vocabulary{
 
 			unitsWithSort.forEach((unit, unitCounter) => {
 				//print unit name
-				out += `<div class="row table-subheader bg-dimgray">
-							<div class="col">${capitaliseFirstLetter(unit)}</div>
+				out += `<div class="row table-subheader">
+							<div class="table-counter"></div>
+							<div class="col bg-dimgray">${capitaliseFirstLetter(unit)}</div>
 						</div>
 				`;
 

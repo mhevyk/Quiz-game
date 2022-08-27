@@ -269,6 +269,16 @@ const searchHandler = event => {
 	const noRecordFoundBlock = $("#voc-search-error");
 	noRecordFoundBlock.remove();
 
+	$("#search-result").remove();
+
+	const highlight = (container, searchedText) => {
+		container.innerHTML = container.innerHTML.replace(searchedText, `<mark>${searchedText}</mark>`)
+	}
+	const removeHighlight = (container) => {
+		container.innerHTML = container.innerHTML.replace("<mark>", "");
+		container.innerHTML = container.innerHTML.replace("</mark>", "");
+	}
+
 	let filteredRecordsCount = 0;
 	//each method can work with rows using $(this), because its first argument is index
 	records.each(function(){
@@ -276,10 +286,17 @@ const searchHandler = event => {
 		let record = row.children(".col");
 		const [wordContainer, translatesContainer] = record;
 
+		removeHighlight(wordContainer);
+		removeHighlight(translatesContainer);
+
 		let recordText = (wordContainer.textContent + translatesContainer.textContent).toLowerCase();
 
 		//words are found only by start of the word
 		if(recordText.includes(searchedToken)){
+			if(searchedToken){
+				highlight(wordContainer, searchedToken);
+				highlight(translatesContainer, searchedToken);
+			}
 			row.show();
 			filteredRecordsCount++;
 		}
@@ -289,10 +306,15 @@ const searchHandler = event => {
 	});
 	if(!filteredRecordsCount){
 		voc.vocHTML.append(
-			`<div id="voc-search-error" class="row empty-vocabulary-placeholder border-0" style="">
+			`<div id="voc-search-error" class="row empty-vocabulary-placeholder border-0">
 				<div class="col">За вашим запитом нічого не знайдено!</div>
 			</div>`
 		);
+	}
+	else if(event.target.value){
+		voc.vocHTML.append(`<div id="search-result" class="row empty-vocabulary-placeholder">
+			<div class="col">За вашим запитом знайдено <b>${filteredRecordsCount}</b> записів!</div>
+		</div>`)
 	}
 };
 

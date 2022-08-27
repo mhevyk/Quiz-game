@@ -103,3 +103,6 @@ input[type="file"]{
 	color: var(--color-c);
 	background-color: transparent;
 }
+#search-result{
+	border-bottom: none;
+}

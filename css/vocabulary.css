@@ -19,7 +19,15 @@
 .table-m{
 	margin-bottom: 30px;
 }
-.table-m .row{
+.table-m .table-subheader .col{
+	border: 0;
+}
+.table-m .table-subheader .table-counter{
+	background: #5e5e5e;
+}
+.table-m .table-header-row,
+.table-m .table-row,
+.table-m .table-subheader .col{
 	padding: 4px 0px;
 }
 .table-counter{
@@ -44,6 +52,10 @@
 	color: var(--color-d);
 	text-align: center;
 	padding: 10px 0px !important;
+}
+mark{
+	padding: 0;
+	background-color: #ffec89;
 }
 @media only screen and (max-width: 480px){
 	#search > input{
