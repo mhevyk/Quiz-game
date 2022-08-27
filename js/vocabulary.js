@@ -5,6 +5,7 @@ class Vocabulary{
 			_unit: false,
 			_sort: false,
 			_questionReverse: false,
+			_colorHighlight: false
 		}
 		this.vocHTML = $(`#${vocabularyId}`);
 		this.units = [];

@@ -36,7 +36,7 @@ class Modal{
 
 		this.modalParts.submitBtn.click(event => {
 			if(props.onSubmit && typeof props.onSubmit === "function"){
-				props.onSubmit(event);
+				props.onSubmit(event);		
 			}
 			if(props.onSubmitHide){
 				this.hide();

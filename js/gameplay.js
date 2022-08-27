@@ -99,26 +99,43 @@ $("#form-game-submit").click(function(){
 			//text, which was typed by user as answer to the question
 			const userAnswer = $("#game-answer").val().trim();
 
+			const isAnswerRight = checkIfAnswerIsRight(question, userAnswer);
+
 			//add results of previous question to resultsOfTest storage
 			resultsOfTest.add({
 				...question,
-				answer: checkIfAnswerIsRight(question, userAnswer),
+				answer: isAnswerRight,
 				userAnswer
 			});
 
-			if(currentQuestionsCount === generalQuestionsCount){
-				gameOver = true;
-				resultsOfTest.summarise();
-				$(document).unbind("keyup");
-				return "Game over, questions ran out!";
+			if(voc.flags._colorHighlight){
+				const colorsRGB = {
+					green: "0, 128, 0",
+					red: "255, 0, 0"
+				};
+	
+				confirm.link.css("background-color", `rgba(${isAnswerRight ? colorsRGB.green : colorsRGB.red}, 0.4)`);
 			}
 
-			question = getNextQuestionData(questionGenerator);
+			const goToNextQuestion = () => {
+				if(currentQuestionsCount === generalQuestionsCount){
+					gameOver = true;
+					voc.flags._colorHighlight && confirm.link.css("background-color", "");
+					resultsOfTest.summarise();
+					$(document).unbind("keyup");
+					return "Game over, questions ran out!";
+				}
+				voc.flags._colorHighlight && confirm.link.css("background-color", "");
 
-			++currentQuestionsCount;
+				question = getNextQuestionData(questionGenerator);
 
-			confirm.header(`Питання ${currentQuestionsCount}/${generalQuestionsCount}`);
-			confirm.body(`<p>${getQuestionText(question)}</p> <input type="text" id="game-answer" placeholder="Переклад..."/>`);
+				++currentQuestionsCount;
+
+				confirm.header(`Питання ${currentQuestionsCount}/${generalQuestionsCount}`);
+				confirm.body(`<p>${getQuestionText(question)}</p> <input type="text" id="game-answer" placeholder="Переклад..."/>`);
+			}
+
+			voc.flags._colorHighlight ? sleep(400).then(goToNextQuestion) : goToNextQuestion();
 		},
 		onHide: () => {
 			//then we quit confirm, we have to delete keyup event, because other confirms will have wrong keyup
