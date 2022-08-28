@@ -62,3 +62,31 @@ mark{
 		width: 100%;
 	}
 }
+.import-file-simulation{
+	margin-bottom: 20px;
+}
+.import-file-simulation .header,
+.import-file-simulation .content{
+	padding: 8px 0px 8px 20px;
+	letter-spacing: 0.5px;
+}
+.import-file-simulation .content{
+	padding-top: 15px;
+	line-height: 15px;
+	border: 1px dashed var(--color-c);
+	border-top: none;
+}
+.import-file-simulation .header{
+	background-color: var(--color-c);
+	color: white;
+}
+.import-file-simulation .header-item{
+	display: inline-block;
+}
+.import-file-simulation .simulation-name{
+	margin: 1.3rem 0;
+	font-size: 15pt;
+}
+.import-file-simulation .fa{
+	padding-right: 10px;
+}

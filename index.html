@@ -63,7 +63,11 @@
 					<h2>Тестування</h2>
 					<form id="form-game" class="form-simple" autocomplete="off" novalidate>
 						<div class="form-description-group">
-							Тестування зараховується лише у випадку відповіді на всі питання
+							<p>Особливості:</p>
+							<ul>
+								<li>тестування зараховується лише у випадку відповіді на всі питання;</li>
+								<li>результати тестування завжди можна переглянути на сторінці <span class="link" onClick="linkToPage('_statistic')">Статистика</span>;</li>
+							</ul>
 						</div>
 						<div class="form-group">
 							<label for="form-game-unit" class="form-group-header">Розділи, які входять в тестування</label>
@@ -123,8 +127,12 @@
 								<div class="row mx-auto tab-contents">
 									<div class="tab-content">
 										<form id="form-add-one" class="form-simple needs-validation" autocomplete="off" novalidate>
-											<div class="form-description-group">
-												Можна додати слово з одим чи кількома перекладами, а також вибрати для нього вже наявний розділ або  створити новий
+											<div class="form-description-group text-start">
+												<p>За допомогою цієї форми можна:</p>
+												<ul>
+													<li>додати слово з одним чи декількома перекладами;</li>
+													<li>додати слово до нового або до вже наявного розділу.</li>
+												</ul>
 											</div>
 											<div class="form-group">
 												<label for="form-add-one-word-input" class="form-group-header">Слово*</label>
@@ -164,23 +172,31 @@
 										</form>
 									</div>
 									<div class="tab-content">
-										<div class="form-description-group">
-											Можливо завантажити один або декілька текстових файлів з розширенням <b>.txt</b>, які мають таку ж структуру, як вказано нижче. <b>[Назва розділу]</b> - конкретна назва файлу, яка стане назвою розділу, а <b>символ ">"</b> розділяє слово і переклад.<br>Перелічувати слова не дозволяється, а переклади можна через кому.<br>Також можна завантажити архів із розширенням <b>.zip</b> з розділами, який до цього був експортований з цієї ж програми.
+										<div class="form-description-group text-start">
+											<p>За допомогою імпорту з файлу можна завантажити:</p>
+											<ul>
+												<li>Один та більше текстових файлів з розширенням <b>.txt</b>;</li>
+												<li>Один архів з розширенням <b>.zip</b>, який вміщує файли з розширенням <b>.txt</b>.</li>
+											</ul>
+											<p>Особливості вводу:</p>
+											<ul>
+												<li>Назва текстового файлу стане назвою розділу, тому не забудьте її змінити, адже подальша зміна назви розділу неможлива;</li>
+												<li>Символ <b>></b> є обов'язковим, адже він розділяє слово і переклади;</li>
+												<li>Кількість пропусків (пробілів) між словом, перекладами та символом <b>></b> не має значення;</li>
+												<li>Можна вказати тільки одне слово, а перекладів можна один і більше.</li>
+											</ul>
 										</div>
-										<div class="my-2">
-											<div class="border border-bottom-0 ps-4 py-2">
-												<i class="fa fa fa-file-text me-2"></i> <span class="text-primary">[Назва розділу]</span>.txt
+										<div class="import-file-simulation">
+											<h4 class="simulation-name text-center">ПРАВИЛЬНА СТРУКТУРА ФАЙЛУ</h4>
+											<div class="header">
+												<div class="header-item icon">
+													<i class="fa fa-file-text" aria-hidden="true"></i>
+												</div>
+												<div class="header-item title">[назва розділу].txt:  Блокнот</div>
 											</div>
-											<div class="border ps-4 pt-3 pb-3">
-												<div class="pb-3">
-													слово1 <span class="text-primary">></span> переклад
-												</div>
-												<div class="pb-3">
-													слово2 <span class="text-primary">></span> переклад1, переклад2, переклад3
-												</div>
-												<div class="pb-3">
-													слово3 <span class="text-primary">></span> Переклад1, ПЕРЕКЛАД2
-												</div>
+											<div class="content">
+												<p>[слово] > [переклад]</p>
+												<p>[слово] > [переклад], [переклад], [переклад] ...</p>
 											</div>
 										</div>
 										<div id="form-add-many-file-log"></div>
@@ -204,6 +220,13 @@
 								<div class="row mx-auto tab-contents">
 									<div class="tab-content">
 										<form id="form-edit-manually" class="form-simple" autocomplete="off" novalidate>	
+											<div class="form-description-group text-start">
+												<p>За допомогою цієї форми можна редагувати слово:</p>
+												<p>Особливості:</p>
+												<ul>
+													<li>для швидкого пошуку слова можна вибирати розділ, у якому від знаходиться, але не обов'язково.</li>
+												</ul>
+											</div>
 											<div class="form-group">
 												<label for="form-edit-manually-unit" class="form-group-header mb-3">Розділ, у якому знаходиться шукане слово</label>
 												<select id="form-edit-manually-unit" name="unit" data-content="unit" class="mb-2 form-control d-inline w-50">
@@ -238,7 +261,19 @@
 									</div>
 									<div class="tab-content">
 										<div class="form-description-group">
-											Редагування слова або перекладу можна здійснити за допомогою подвійного кліку на слові у словнику. Для підтведження редагування достатньо клікнути поза текстовим полем. Для скасування редагування достатньо залишити те ж слово або очистити текстове поле. Під час редагування поля "Слово" не допускається їх перелічення через кому.
+											<p>Для редагування слова таким способом потрібно:</p>
+											<ol>
+												<li>Вибрати потрібне слово у словнику.</li>
+												<li>Навести мишку на текст запису, який хочете редагувати.</li>
+												<li>Виконати подвійний клік, після чого текст перетвориться на поле для вводу.</li>
+												<li>Змінити значення на потрібне.</li>
+												<li>Клікнути поза полем для вводу, після чого воно зникне.</li>
+											</ol>
+											<p>Особливості:</p>
+											<ul>
+												<li>якщо ви <b>помилково почали редагування слова</b> і ви не хочете змінювати попереднє значення, то можна просто повністю очистити вміст поля, після чого попереднє значення буде відновлено;</li>
+												<li>якщо ви хочете <b>ввести декілька перекладів</b>, то робити це можна тільки через кому;</li>
+											</ul>
 										</div>
 									</div>
 								</div>
@@ -257,7 +292,12 @@
 									<div class="tab-content">
 										<form id="form-remove-one" class="form-simple needs-validation" autocomplete="off" novalidate>
 											<div class="form-description-group">
-												Видалення одного слова. Його пошук проводиться тільки по стовпцю "Слово"
+												<p>За допомогою цієї форми можна видалити одиничне слово.</p>
+												<p>Особливості:</p>
+												<ul>
+													<li>пошук слова проводиться тільки по колонці словника "Слово";</li>
+													<li>регістр при пошуку слова не враховується.</li>
+												</ul>
 											</div>
 											<div class="form-group">
 												<label for="form-remove-one-input" class="form-group-header">Слово*</label>
@@ -277,7 +317,13 @@
 									<div class="tab-content">
 										<form id="form-remove-range" class="form-simple needs-validation" autocomplete="off" novalidate>
 											<div class="form-description-group">
-												Видалення слів у вказаному діапазоні. Пошук слів проводиться тільки по стовпцю "Слово", а їх розташування у словнику не має значення
+												<p>За допомогою цієї форми можна видалити діапазон слів.</p>
+												<p>Особливості:</p>
+												<ul>
+													<li>пошук слів проводиться тільки по колонці словника "Слово";</li>
+													<li>регістр при пошуку слів не враховується;</li>
+													<li>розташування слів у словнику не має значення.</li>
+												</ul>
 											</div>
 											<div class="form-group">
 												<label for="form-remove-range-word1-input" class="form-group-header">Від слова*</label>
@@ -307,7 +353,7 @@
 									<div class="tab-content">
 										<form id="form-remove-unit" class="form-simple needs-validation" autocomplete="off" novalidate>
 											<div class="form-description-group">
-												Видалення вибраного розділу з усіма словами в ньому
+												<p>За допомогою цієї форми можна видалити розділ разом з усіма словами, які знаходяться у ньому.</p>
 											</div>
 											<div class="form-group">
 												<label for="form-remove-unit-select" class="form-group-header mb-3">Розділ*</label>
@@ -323,7 +369,7 @@
 									<div class="tab-content">
 										<form id="form-clear" class="form-simple needs-validation" autocomplete="off" novalidate>
 											<div class="form-description-group">
-												Видалення всіх слів та розділів у словнику
+												<p>За допомогою цієї форми можна видалити всі слова та розділи у словнику, зробивши його порожнім.</p>
 											</div>
 											<div class="form-submit-group">
 												<input type="submit" id="form-clear-submit" class="action-btn action-btn-dark" value="Очистити">
@@ -336,7 +382,11 @@
 						<button id="accordion-export-header" class="container-fluid tab-header">Експортувати</button>
 						<div class="tab-content">
 							<div class="form-description-group">
-								Експорт словника у вигляді архіву зі всіма розділами у вигляді текстових файлів для збереження на комп'ютері. Рекомендуємо зберігати копію словника, щоб у випадку збою у програмі не втратити дані, а повторно їх завантажити
+								<p>За допомогою цієї форми можна експортувати словник у вигляді архіву зі всіма розділами</p>
+								<p>Чому це вигідно робити:</p>
+								<ul>
+									<li><b>для збереження даних:</b> якщо за якихось причин буде збій у програмі, то слова може бути втрачено, а маючи експортований словник, його можна повторно завантажити у програму;</li>
+								</ul>
 								<div class="form-submit-group">
 									<input type="submit" id="form-export-submit" class="action-btn action-btn-dark" value="Експортувати">
 								</div>
@@ -375,7 +425,7 @@
 							<div class="row table-row">
 								<div class="table-counter">2</div>
 								<div class="col text-truncate">
-									Миттєва перевірка відповіді
+									Миттєва перевірка відповіді кольором
 									<i class="px-1 fa fa-info-circle" aria-hidden="true" data-toggle="tooltip" data-placement="right" title="Якщо налаштування ввімкнене, то фон засвітиться зеленим, якщо відповідь правильна, інакше червоним одразу після відповіді"></i>
 								</div>
 								<div class="table-counter">
