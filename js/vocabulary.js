@@ -132,7 +132,7 @@ class Vocabulary{
 		return "Unit was removed successfully!";
 	}
 	print(){
-		if(this.voc.length <= 0){
+		if(this.length() <= 0){
 			this.clear();
 			return "Vocabulary is empty!";
 		}

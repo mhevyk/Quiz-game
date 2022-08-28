@@ -16,6 +16,9 @@ function debounce(func, time){
 		timeout = setTimeout(partlyCalledFunc, time);
 	}
 }
+function muptipleCharOccurence(string, char){
+	return string.split(char).length - 1;
+}
 function sortASC(array, compareCallback = null){//сортування літер за зростанням
 	return array.slice().sort((word1, word2) => compareCallback ? compareCallback(word1, word2) : word1.localeCompare(word2));
 }
