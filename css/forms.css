@@ -1,5 +1,5 @@
 .form-description-group{
-	text-align: center;
+	text-align: justify;
 	margin: 10px 2px 5px 2px;
 	color: grey;
 }
@@ -74,6 +74,7 @@ input[type="file"]{
 	display: none;
 }
 .action-btn{
+	user-select: none;
 	padding: 3px 16px;
 	border: 0;
 	border-radius: 5px;

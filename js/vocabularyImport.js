@@ -7,7 +7,7 @@ const hideLoader = () => {
 	});
 }
 const onAllSettled = () => {
-	//voc.save();
+	voc.save();
 	voc.print();
 	hideLoader();
 }

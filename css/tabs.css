@@ -48,13 +48,13 @@
 }
 
 #tabs-action-add .tab-content{
-	min-height: 530px;
+	min-height: 550px;
 }
 #tabs-action-remove .tab-content{
-	min-height: 390px;
+	min-height: 435px;
 }
 #tabs-action-edit .tab-content{
-	min-height: 390px;
+	min-height: 530px;
 }
 .game-separator{
 	height: 3px;
