@@ -222,7 +222,7 @@ class Vocabulary{
 			if(!$("#_game .empty-vocabulary-placeholder").length){
 				gameForm.before(`
 					<div class="empty-vocabulary-placeholder">
-						<div class="col">Додайте слова у словник, щоб почати тестування!</div>
+						<div class="col">Додайте слова у <span class="link fw-bold" onclick="linkToPage('_vocabulary')">словник</span>, щоб почати тестування!</div>
 					</div>
 				`);
 				gameForm.hide();
