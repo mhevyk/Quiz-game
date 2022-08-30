@@ -137,7 +137,7 @@
 											<div class="form-group">
 												<label for="form-add-one-word-input" class="form-group-header">Слово*</label>
 												<input type="text" id="form-add-one-word-input" name="word" class="form-control" placeholder="Слово" value="" data-comma-avoid="true" required>
-												<div class="invalid-feedback">
+												<div class="word-feedback invalid-feedback">
 													Введіть слово!
 												</div>
 											</div>
@@ -147,7 +147,7 @@
 												</label>
 												<div class="form-add-one-translates-group">
 													<input type="text" name="translate" class="form-control" placeholder="Переклад" value="" translateIndex="0" data-comma-avoid="true" required>
-													<div class="invalid-feedback mb-2">
+													<div class="translate-feedback invalid-feedback mb-2">
 														Введіть переклад!
 													</div>
 												</div>	
@@ -159,12 +159,12 @@
 													<option selected disabled value="">Виберіть розділ</option>
 												</select>
 												<button type="button" id="modal-unit-add-link" class="action-btn action-btn-light" data-bs-toggle="modal" data-bs-target="#modal-unit-add">Додати розділ</button>
-												<div class="invalid-feedback">
+												<div class="unit-feedback invalid-feedback">
 													Виберіть розділ зі списку!
 												</div>
 											</div>
 											<div class="form-group">
-												<button class="action-btn action-btn-dark" type="reset" data-role="reset">Очистити форму</button>
+												<button id="form-add-one-reset" class="action-btn action-btn-dark" type="reset" data-role="reset">Очистити форму</button>
 											</div>
 											<div class="form-submit-group">
 												<input type="submit" id="form-add-one-submit" class="action-btn action-btn-dark" value="Додати">

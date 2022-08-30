@@ -5,9 +5,8 @@ function unique(array){//повертає масив без повторюван
 	//if(!Array.isArray(array)) return "Parameter must be an array!";
 	return Array.from(new Set(array));
 }
-function sleep(time){
-	return new Promise((resolve, reject) => { setTimeout(resolve, time); })
-}
+const sleep = time => new Promise(resolve => setTimeout(resolve, time));
+
 function debounce(func, time){
 	let timeout;
 	return function(){
@@ -29,9 +28,22 @@ function getRandomArrayItem(array){
 	return array[Math.floor(Math.random() * array.length)];
 }
 function resetFormAddOne(form){
+	const $form = $(form);
 	form.reset();
+
+	const resetFeedback = (form, feedbackSelector, defaultText) => {
+		console.log({form, feedbackSelector, defaultText})
+		const feedbacks = $(form).find(feedbackSelector);
+		console.log({feedbacks})
+		feedbacks.text(defaultText);
+	}
+
 	$(form.translate).parent().not(":first").remove();
 	$("#form-add-one-translates-count").text(1);
+
+	resetFeedback(form, ".word-feedback", "Введіть слово!");
+	resetFeedback(form, ".translate-feedback", "Введіть переклад!");
+	resetFeedback(form, ".unit-feedback", "Виберіть розділ зі списку!");
 }
 function validateTranslates(translateString){
 	const translates = translateString.split(",");
@@ -61,7 +73,7 @@ function updateAllSelects(){
 	}
 	const editWordSelect = $("#form-edit-manually-word");
 	const editWordPlaceholder = `<option selected disabled value="">Виберіть слово</option>`;
-	editWordSelect.html(editWordPlaceholder + voc.voc.map(a => `<option value="${a.word}">${a.word}</option>`));
+	editWordSelect.html(editWordPlaceholder + voc.voc.map(record => `<option value="${record.word}">${record.word}</option>`));
 
 	const unitsWithSort = voc.getUnitsWithSort();
 
@@ -95,6 +107,6 @@ function* counter(start){
 function replaceCommasInInput(event){
 	const input = $(event.target);
 	//allowed to type words width spaces only in ukrainian and english
-	const valueWithousCommas = input.val().replace(/[^іІїЇєЄґҐа-яА-Я\w ]/g, "");
+	const valueWithousCommas = input.val().replace(/[>\,]/, "");
 	input.val(valueWithousCommas);
 }

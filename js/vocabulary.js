@@ -10,6 +10,15 @@ class Vocabulary{
 		this.vocHTML = $(`#${vocabularyId}`);
 		this.units = [];
 	}
+	findRecordByWord(word){
+		return this.voc.find(record => record.word.toLowerCase() === word.toLowerCase());
+	}
+	getHTML(part){
+		switch(part){
+			case "records": return this.vocHTML.find(".table-row");
+			case "subheaders": return this.vocHTML.find(".table-subheader");
+		}
+	}
 	length(){
 		return this.voc.length;
 	}

@@ -1,8 +1,10 @@
 const formSubmitCallbacks = {
 	"form-add-one": function(event){
-		const wordInput = event.target.word;
-		const translateInputs = $(event.target.translate);
-		const unitSelect = event.target.unit;
+		const form = event.target;
+
+		const wordInput = form.word;
+		const translateInputs = $(form.translate);
+		const unitSelect = form.unit;
 
 		const word = wordInput.value.trim();
 		const translates = Array.from(translateInputs, input => input.value.trim());//Array.from() другим параметром може приймати функцію для опрацювання нового масиву
@@ -17,7 +19,7 @@ const formSubmitCallbacks = {
 				voc.add(word, translates, unit);
 
 				//reset form and remove a lot of translates
-				resetFormAddOne(event.target);
+				resetFormAddOne(form);
 
 				voc.print();
 			}
@@ -45,7 +47,7 @@ const formSubmitCallbacks = {
 	},
 	"form-edit-manually": function(event){
 		const word = $("#form-edit-manually-word").find(":selected").val();
-		const recordToEdit = voc.voc.find(record => record.word === word);
+		const recordToEdit = voc.findRecordByWord(word);
 		//0 if we want to edit word, 1 if translate
 		const editType = parseInt($('input[name=form-edit-manually-type]:checked', '#form-edit-manually').val());
 		const whatToEdit = editType ? recordToEdit.translates.join(", ") : recordToEdit.word;
@@ -148,28 +150,16 @@ const formSubmitCallbacks = {
 $("form").submit(event => {
 	//avoid sending form if it is not validated
 	event.preventDefault();
-	$(event.target).addClass("was-validated");
-	if(event.target.checkValidity()){
-		let validateFunction = formSubmitCallbacks[event.target.id];
-		if(validateFunction && typeof validateFunction === "function"){
-			validateFunction(event);
-		}
-	}
+
+	const target = event.target;
+	$(target).addClass("was-validated");
+
+	//if form typed values are valid, we call validateFunction from formSubmitCallbacks if it exists
+	target.checkValidity() && formSubmitCallbacks[target.id]?.(event);
 });
-$("form").find("input").on("input", event => {
-	let text = event.target.value;
-	if(!text.trim()){
-		let errorText = "Назва розділу не може бути пробілами!";
-		event.target.setCustomValidity(errorText);//validation failed with errorText
-	}
-	else{
-		event.target.setCustomValidity("");//validation successfull
-	}
-});
-$("#form-unit-add-submit").click(event => {
-	$("#form-unit-add").trigger("submit");
-});
-$("#form-add-one-translates-add").click(event => {
+$("#form-unit-add-submit").click(() => $("#form-unit-add").trigger("submit"));
+
+$("#form-add-one-translates-add").click(() => {
 	const translatesInputGroups = $(".form-add-one-translates-group");
 
 	//create dom structure of new translate input and then putting it after last translate input
@@ -177,7 +167,7 @@ $("#form-add-one-translates-add").click(event => {
 		`<div class="form-add-one-translates-group">
 			<input type="text" name="translate" class="form-control" placeholder="Переклад" value="" required>
 			<i class="fas fa-times"></i>
-			<div class="invalid-feedback mb-2">
+			<div class="translate-feedback invalid-feedback mb-2">
 				Введіть переклад!
 			</div>
 		</div>`);
@@ -190,57 +180,70 @@ $("#form-add-one-translates-add").click(event => {
 	$("#form-add-one-translates-count").text(translateInputsCount);
 });
 $("#form-add-one-translates").click(event => {
-	if($(event.target).hasClass("fa-times")){
-		$(event.target).parent().remove();
-	}
+	//if button is cross icon (has class "fa-times"), remove block of translates
+	const button = $(event.target);
+	button.hasClass("fa-times") && button.parent().remove();
+
 	$("#form-add-one-translates-count").text($(".form-add-one-translates-group").length);
 });
-$("#form-add-one").click(function(event){
-	const clicked = $(event.target);
-	if(clicked.data("role") === "reset"){
-		resetFormAddOne(this);
-	}
+$("#form-add-one-reset").click(function(event){
+	event.preventDefault();
+	confirm.customShow({
+		title: "Очистка форми",
+		body: `Справді очистити форму?`,
+		submitButtonText: "Так",
+		onSubmitHide: true,
+		onSubmit: () => {
+			resetFormAddOne(document.querySelector("#form-add-one"));
+		}
+	})
 });
 $("#form-add-one").on("input", function(event){
-	let word = $("#form-remove-one-input");
-	let translateInputs = $(this).find("input[type=text]:not(:focus)");
-	let currentValue = $(event.target).val();
-	let invalidFeedback = $(event.target).parent().find(".invalid-feedback");
-	translateInputs.each(function(i){
-		if($(this).val() === currentValue && currentValue.trim() && $(this).val().trim()){
-			if(event.target.name === this.name){
-				event.target.setCustomValidity("Переклади співпадають!");
-				invalidFeedback.text("Переклади співпадають!");
-			}
-			else{
-				event.target.setCustomValidity("Слово і переклад співпадають!");
-				invalidFeedback.text("Слово і переклад співпадають!");
-			}
-			return false;
+	const currentForm = $(this);
+	const currentInput = $(event.target);
+	const currentValue = currentInput.val();
+
+	const translateInputs = currentForm.find("input[type='text']:not(:focus)");
+	const invalidFeedback = currentInput.parent().find(".invalid-feedback");
+
+	let feedbackText = "";
+	translateInputs.each(function(){
+		const inputValue = $(this).val();
+
+		if(inputValue.trim() === currentValue){
+			feedbackText = (currentInput.name === this.name) ? "Переклади співпадають!" : "Слово і переклад співпадають!";
 		}
-		else if(currentValue.trim() === ""){
-			event.target.setCustomValidity("Введіть переклад!");
-			invalidFeedback.text("Введіть переклад!");
+		else if(!currentValue.trim()){
+			const isWordFeedback = invalidFeedback.hasClass("word-feedback");
+			feedbackText = `Введіть ${(isWordFeedback ? "слово" : "переклад")}!`;
 		}
 		else{
-			event.target.setCustomValidity("");
+			feedbackText = "";
 		}
+		event.target.setCustomValidity(feedbackText);
+		invalidFeedback.text(feedbackText);
 	});
 })
 function checkIfWordIsInVocabulary(event){
-	let word = voc.voc.find(a => a.word.toLowerCase() === event.target.value.toLowerCase());
-	let invalidFeedback = $(event.target).parent().find(".invalid-feedback");
-	let validFeedback = $(event.target).parent().find(".valid-feedback");
-	if(word){
-		event.target.setCustomValidity("");
-		validFeedback.html(`Знайдено слово <b>${word.word}</b> з такими перекладами: ${word.translates.join(", ")}`);
+	const currentInput = event.target;
+	const currentValue = currentInput.value;
+
+	const currentFormGroup = $(currentInput).parent();
+	const invalidFeedback = currentFormGroup.find(".invalid-feedback");
+	const validFeedback = currentFormGroup.find(".valid-feedback");
+
+	const foundRecord = voc.findRecordByWord(currentValue);
+
+	if(foundRecord){
+		currentInput.setCustomValidity("");
+		validFeedback.html(`Знайдено слово <b>${foundRecord.word}</b> з такими перекладами: ${foundRecord.translates.join(", ")}`);
 	}
-	else if(!word && event.target.value.trim().length > 0){
-		event.target.setCustomValidity("Такого слова немає у словнику!");
+	else if(currentValue.trim()){
+		currentInput.setCustomValidity("Такого слова немає у словнику!");
 		invalidFeedback.text("Такого слова немає у словнику!");
 	}
 	else{
-		event.target.setCustomValidity("Введіть слово!");
+		currentInput.setCustomValidity("Введіть слово!");
 		invalidFeedback.text("Введіть слово!");
 	}
 }
@@ -249,21 +252,25 @@ const debouncedCheckIfWordIsInVocabulary = debounce(checkIfWordIsInVocabulary, 4
 
 $("#form-remove-one-input").on("input", debouncedCheckIfWordIsInVocabulary);
 $("#form-remove-range").on("input", function(event){
-	let word1 = $("#form-remove-range-word1-input").val().toLowerCase();
-	let word2 = $("#form-remove-range-word2-input").val().toLowerCase();
+	const word1Input = document.querySelector("#form-remove-range-word1-input");
+	const word2Input = document.querySelector("#form-remove-range-word2-input");
+
+	let word1 = word1Input.value.toLowerCase();
+	let word2 = word2Input.value.toLowerCase();
 
 	debouncedCheckIfWordIsInVocabulary(event);
+
 	if(word1 === word2){
-		document.querySelector("#form-remove-range-word2-input").setCustomValidity("Слова співпадають!");
-		$("#form-remove-range-word2-input").parent().find(".invalid-feedback").text("Слова співпадають!");
+		word2Input.setCustomValidity("Слова співпадають!");
+		$(word2Input).parent().find(".invalid-feedback").text("Слова співпадають!");
 	}
 });
 
 const searchHandler = event => {
-	const subheaders = voc.vocHTML.find(".table-subheader");
+	const subheaders = voc.getHTML("subheaders");
 	event.target.value ? subheaders.hide() : subheaders.show();
 
-	const records = voc.vocHTML.find(".table-row");
+	const records = voc.getHTML("records");
 	const searchedToken = $(event.target).val().toLowerCase();
 
 	const noRecordFoundBlock = $("#voc-search-error");
@@ -318,10 +325,8 @@ const searchHandler = event => {
 	}
 };
 
-//debounce uses to delay function call
-const debouncedSearchHandler = debounce(searchHandler, 400);
+$("#search-input").on("input", debounce(searchHandler, 400));
 
-$("#search-input").on("input", debouncedSearchHandler);
 $("#form-export-submit").click(function(event){
 	confirm.customShow({
 		title: "Експорт словника",
