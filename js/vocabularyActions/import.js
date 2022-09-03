@@ -150,7 +150,7 @@ const convertToUnit = filePromise => {
 		hideLoader();
 	});
 }
-$("#form-add-many-file-input").change(event => {
+const importFromTxtAndZip = event => {
 	//clear vocabulary import log
 	$("#form-add-many-file-log").children().remove();
 
@@ -193,4 +193,4 @@ $("#form-add-many-file-input").change(event => {
 	if(!isZipCurrentFileFormat){
 		Promise.allSettled(fileInProcessList).then(onAllSettled);
 	}
-});
+}

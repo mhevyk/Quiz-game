@@ -1,6 +1,8 @@
 function getCurrentYear(){
 	return new Date().getFullYear();
 }
+const getSelectedOptionValue = select => select.options[select.selectedIndex].value;
+
 function unique(array){//повертає масив без повторюваних елементів
 	//if(!Array.isArray(array)) return "Parameter must be an array!";
 	return Array.from(new Set(array));
@@ -26,24 +28,6 @@ function shuffle(array){//mix array
 };
 function getRandomArrayItem(array){
 	return array[Math.floor(Math.random() * array.length)];
-}
-function resetFormAddOne(form){
-	const $form = $(form);
-	form.reset();
-
-	const resetFeedback = (form, feedbackSelector, defaultText) => {
-		console.log({form, feedbackSelector, defaultText})
-		const feedbacks = $(form).find(feedbackSelector);
-		console.log({feedbacks})
-		feedbacks.text(defaultText);
-	}
-
-	$(form.translate).parent().not(":first").remove();
-	$("#form-add-one-translates-count").text(1);
-
-	resetFeedback(form, ".word-feedback", "Введіть слово!");
-	resetFeedback(form, ".translate-feedback", "Введіть переклад!");
-	resetFeedback(form, ".unit-feedback", "Виберіть розділ зі списку!");
 }
 function validateTranslates(translateString){
 	const translates = translateString.split(",");
@@ -104,9 +88,9 @@ function* counter(start){
 		yield ++count;
 	}
 }
-function replaceCommasInInput(event){
-	const input = $(event.target);
+function forbidTypingIncorrectSymbols(event){
+	const input = event.target;
 	//allowed to type words width spaces only in ukrainian and english
-	const valueWithousCommas = input.val().replace(/[>\,]/, "");
-	input.val(valueWithousCommas);
+	const valueWithousCommas = input.value.replace(/[>\,]/, "");
+	input.value = valueWithousCommas;
 }

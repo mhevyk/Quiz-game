@@ -11,7 +11,7 @@ function moveRangeLabel(){
 };
 
 function updateRangeForQuestionsCountInGame(props = {}){
-	let range = document.querySelector("#form-game-questions-count-range");
+	const range = document.querySelector("#form-game-questions-count-range");
 
 	range.min = 1;
 	//max has to be number and be bigger than min

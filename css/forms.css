@@ -45,6 +45,12 @@
 	color: red;
 	padding: 7px;
 	font-size: 14pt;
+	transition: .3s;
+}
+.form-group .fa-times:hover{
+	cursor: pointer;
+	opacity: 0.8;
+	transform: scale(1.3);
 }
 .form-submit-group{
 	margin-top: 20px;
@@ -106,4 +112,16 @@ input[type="file"]{
 }
 #search-result{
 	border-bottom: none;
+}
+
+fieldset{
+	border: 1px dashed gray;
+	padding: 10px 0px 10px 20px;
+}
+fieldset legend{
+	all: revert;
+	font-weight: bold;
+}
+fieldset input[type="radio"]{
+	display: block;
 }

@@ -17,7 +17,7 @@ $(document).ready(() => {
 	//hide all pages and navigation arrows
 	$("#arrow-top, #arrow-extra-back, #arrow-back, .main-menu-content").hide();
 
-	$(`[data-toggle="tooltip"]`).tooltip();
+	$(`[data-bs-toggle="tooltip"]`).tooltip();
 	$(".current-year").text(getCurrentYear());
 
 	voc.load();

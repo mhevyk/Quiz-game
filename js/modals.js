@@ -1,4 +1,9 @@
 class Modal{
+	static colorStatusesRGB = {
+		success: "0, 128, 0",
+		danger: "255, 0, 0"
+	};
+	static colorStatusOpacity = 0.4;
 	constructor(id){
 		this.link = $(`#${id}`);
 		this.modalParts = {
@@ -81,6 +86,17 @@ class Modal{
 	}
 	cancelBtn(text){
 		this.modalParts.cancelBtn.text(text);
+	}
+	highlight(status){
+		if(status in Modal.colorStatusesRGB){
+			const colorRGB = Modal.colorStatusesRGB[status];
+			const opacity = Modal.colorStatusOpacity;
+			const colorWithOpacity = `rgba(${colorRGB}, ${opacity})`;
+			this.link.css("background-color", colorWithOpacity);
+		}
+	}
+	removeHighlight(){
+		this.link.css("background-color", "");
 	}
 	disable(part, delayTime = 0){
 		if(part in this.modalParts && part.includes("Btn")){

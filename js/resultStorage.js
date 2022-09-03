@@ -14,9 +14,9 @@ class ResultStorage{
 			let colorPart = (question.answer) ? "success" : "danger";
 			result += `
 				<div id="game${gameCounter}-question-${index + 1}" class="question">
-					<div class="tab-header bg-${colorPart}-light text-dark active">
+					<button class="tab-header w-100 bg-${colorPart}-light text-dark active">
 						<i class="fa fa-${question.answer ? "check" : "close"} text-${colorPart} pe-2" aria-hidden="true"></i> Питання ${index + 1}
-					</div>
+					</button>
 					<div class="tab-content p-0">
 						<div class="row border-bottom">
 							<div class="col-3 border-end bg-lightgrey py-1">Питання</div>
@@ -116,10 +116,6 @@ class ResultStorage{
 
 		confirm.hide("cancelBtn");
 		confirm.disable("submitBtn").enable("submitBtn", 1000);
-
-		console.log($(resultText));
-		console.log($(resultText).find("b.link-to-statistic"))
-		
 
 		confirm.customShow({
 			title: "Тестування закінчено!",

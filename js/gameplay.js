@@ -109,23 +109,18 @@ $("#form-game-submit").click(function(){
 			});
 
 			if(voc.flags._colorHighlight){
-				const colorsRGB = {
-					green: "0, 128, 0",
-					red: "255, 0, 0"
-				};
-	
-				confirm.link.css("background-color", `rgba(${isAnswerRight ? colorsRGB.green : colorsRGB.red}, 0.4)`);
+				confirm.highlight(isAnswerRight ? "success" : "danger");
 			}
 
 			const goToNextQuestion = () => {
 				if(currentQuestionsCount === generalQuestionsCount){
 					gameOver = true;
-					voc.flags._colorHighlight && confirm.link.css("background-color", "");
+					voc.flags._colorHighlight && confirm.removeHighlight();
 					resultsOfTest.summarise();
 					$(document).unbind("keyup");
 					return "Game over, questions ran out!";
 				}
-				voc.flags._colorHighlight && confirm.link.css("background-color", "");
+				voc.flags._colorHighlight && confirm.removeHighlight();
 
 				question = getNextQuestionData(questionGenerator);
 

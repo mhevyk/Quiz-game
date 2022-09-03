@@ -13,9 +13,6 @@
 .bg-lightgrey{
 	background-color: lightgray !important;
 }
-:hover{
-	cursor: pointer;
-}
 *{
 	margin: 0;
 	padding: 0;
@@ -65,9 +62,17 @@ h2{
 	padding-bottom: 12px;
 	border-bottom: 1px dashed lightgray;
 }
+select:hover, input:hover{
+	cursor: pointer;
+}
 .action-arrow{
 	font-size: 30pt;
 	transition: all .3s;
+}
+.action-arrow:hover{
+	cursor: pointer;
+	opacity: 0.8;
+	transform: scale(1.2);
 }
 #arrow-back{
 	margin-top: 30px;
@@ -105,6 +110,7 @@ h2{
 	transition: all .3s;
 }
 .main-menu-header:hover{
+	cursor: pointer;
 	border: 2px solid var(--color-a);
 	background-color: white;
 	color: var(--color-a);
@@ -129,10 +135,18 @@ footer{
 	transition: .2s opacity;
 }
 .link:hover{
+	cursor: pointer;
 	opacity: 0.5;
 }
 .row{
 	margin: 0;
+}
+.btn-close{
+	transition: .3s;
+}
+.btn-close:hover{
+	cursor: pointer;
+	transform: scale(1.3);
 }
 @media only screen and (max-width: 480px){
 	#main-menu{
@@ -174,6 +188,12 @@ footer{
 		background-color: rgba(0, 0, 0, 0.4);
 		padding: 0px 5px;
 		left: 8%;
+	}
+}
+@media only screen and (max-width: 600px){
+	input[type="text"],
+	select{
+		width: 100%;
 	}
 }
 @media only screen and (min-width: 600px) and (max-width: 768px){

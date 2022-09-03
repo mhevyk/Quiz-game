@@ -16,6 +16,9 @@
 	right: 3%;
 	transform: translate(0, -50%);
 }
+#settings-content .col .fa-info-circle:hover{
+	cursor: pointer;
+}
 @media screen and (max-width: 600px){
 	#settings-content .table-row > .table-counter:first-child{
 		display: none;
