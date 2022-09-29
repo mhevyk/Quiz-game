@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,12 +11,12 @@
 
 	<link rel="stylesheet" href="libs/bootstrap.min.css" type="text/css">
 
-	<script type="text/javascript" src="libs/popper.min.js"></script>
-	<script type="text/javascript" src="libs/bootstrap.min.js"></script>
-	<script type="text/javascript" src="libs/fontawesome.js"></script>
-	<script type="text/javascript" src="libs/jquery-3.6.0.min.js"></script>
-	<script type="text/javascript" src="libs/jszip.js" async></script>
-	<script type="text/javascript" src="libs/FileSaver.js" async></script>
+	<script src="libs/popper.min.js"></script>
+	<script src="libs/bootstrap.min.js"></script>
+	<script src="libs/fontawesome.js"></script>
+	<script src="libs/jquery-3.6.0.min.js"></script>
+	<script src="libs/jszip.js" async></script>
+	<script src="libs/FileSaver.js" async></script>
 
 	<link rel="stylesheet" type="text/css" href="css/forms.css">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
@@ -27,30 +28,31 @@
 
 	<link rel="stylesheet" type="text/css" href="css/gameplay.css">
 
-	<script type="text/javascript" src="js/vocabularyActions/addRecord.js"></script>
-	<script type="text/javascript" src="js/vocabularyActions/addUnit.js"></script>
-	<script type="text/javascript" src="js/vocabularyActions/deleteRecord.js"></script>
-	<script type="text/javascript" src="js/vocabularyActions/editRecord.js"></script>
-	<script type="text/javascript" src="js/vocabularyActions/export.js"></script>
-	<script type="text/javascript" src="js/vocabularyActions/import.js"></script>
-	<script type="text/javascript" src="js/vocabularyActions/search.js"></script>
+	<script src="js/vocabularyActions/addRecord.js"></script>
+	<script src="js/vocabularyActions/addUnit.js"></script>
+	<script src="js/vocabularyActions/deleteRecord.js"></script>
+	<script src="js/vocabularyActions/editRecord.js"></script>
+	<script src="js/vocabularyActions/export.js"></script>
+	<script src="js/vocabularyActions/import.js"></script>
+	<script src="js/vocabularyActions/search.js"></script>
 
-	<script type="text/javascript" src="js/vocabularyActions/formSubmit.js" defer></script>
+	<script src="js/vocabularyActions/formSubmit.js" defer></script>
 
-	<script type="text/javascript" src="js/functions.js"></script>
-	<script type="text/javascript" src="js/settings.js" defer></script>
-	<script type="text/javascript" src="js/vocabulary.js" defer></script>
-	<script type="text/javascript" src="js/modals.js" defer></script>
-	<script type="text/javascript" src="js/tabs.js" defer></script>
-	
-	<script type="text/javascript" src="js/handleVocabulary.js" defer></script>
-	<script type="text/javascript" src="js/navigation.js" defer></script>
-	<script type="text/javascript" src="js/labeledRange.js" defer></script>
-	<script type="text/javascript" src="js/resultStorage.js" defer></script>
+	<script src="js/functions.js"></script>
+	<script src="js/settings.js" defer></script>
+	<script src="js/vocabulary.js" defer></script>
+	<script src="js/modals.js" defer></script>
+	<script src="js/tabs.js" defer></script>
 
-	<script type="text/javascript" src="js/gameplay.js" defer></script>
+	<script src="js/handleVocabulary.js" defer></script>
+	<script src="js/navigation.js" defer></script>
+	<script src="js/labeledRange.js" defer></script>
+	<script src="js/resultStorage.js" defer></script>
+
+	<script src="js/gameplay.js" defer></script>
 
 </head>
+
 <body>
 	<div class="modal fade" id="modal-loader" tabindex="-1" aria-labelledby="modal-confirm-label" aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered d-flex justify-content-center align-items-center">
@@ -83,17 +85,20 @@
 							<p>Особливості:</p>
 							<ul>
 								<li>тестування зараховується лише у випадку відповіді на всі питання;</li>
-								<li>результати тестування завжди можна переглянути на сторінці <span class="link" onclick="linkToPage('_statistic')">Статистика</span>;</li>
+								<li>результати тестування завжди можна переглянути на сторінці <span class="link"
+										onclick="linkToPage('_statistic')">Статистика</span>;</li>
 							</ul>
 						</div>
 						<div class="form-group">
-							<label for="form-game-unit" class="form-group-header">Розділи, які входять в тестування</label>
-							<select id="form-game-unit" name="unit" class="w-100 mb-2 form-control d-inline" data-content="unit">
+							<label for="form-game-unit" class="form-group-header">Розділи, які входять в
+								тестування</label>
+							<select id="form-game-unit" name="unit" class="w-100 mb-2 form-control d-inline"
+								data-content="unit">
 								<option selected value="">Всі розділи</option>
 							</select>
 						</div>
 						<div class="form-group">
-							<label for="form-game-range" class="form-group-header">Кількість слів*</label><br>
+							<span class="form-group-header">Кількість слів*</span><br>
 							<div class="labeled-range-wrap">
 								<div class="labeled-range-value"><span></span></div>
 								<input type="range" id="form-game-questions-count-range" step="1">
@@ -102,16 +107,23 @@
 						<fieldset>
 							<legend>Формат виводу результату*</legend>
 							<div class="form-check">
-								<input id="newbie" class="form-check-input" type="radio" name="game-result-format" value="percent" checked>
-								<label for="newbie">Відсоткове відношення правильних та неправильних відповідей</label>
+								<label>
+									<input class="form-check-input" type="radio" name="game-result-format"
+										value="percent" checked>
+									Відсоткове відношення правильних та неправильних відповідей
+								</label>
 							</div>
 							<div class="form-check">
-								<input id="newbie" class="form-check-input" type="radio" name="game-result-format" value="twelve">
-								<label for="newbie">Дванадцятибальна шкала</label>
+								<label>
+									<input class="form-check-input" type="radio" name="game-result-format"
+										value="twelve">
+									Дванадцятибальна шкала
+								</label>
 							</div>
-						  </fieldset>
+						</fieldset>
 						<div class="form-submit-group">
-							<input type="submit" id="form-game-submit" class="action-btn action-btn-dark" value="Почати">
+							<input type="submit" id="form-game-submit" class="action-btn action-btn-dark"
+								value="Почати">
 						</div>
 					</form>
 				</div>
@@ -119,7 +131,7 @@
 					<h2>Словник</h2>
 					<div id="search" class="input-group d-flex justify-content-end mb-3">
 						<input type="text" id="search-input" placeholder="Пошук...">
-						</div>
+					</div>
 					<div id="vocabulary-table" class="table-m">
 						<div id="vocabulary-header" class="row table-header-row">
 							<div class="table-counter">№</div>
@@ -139,7 +151,8 @@
 								</div>
 								<div class="row mx-auto tab-contents">
 									<div class="tab-content">
-										<form id="form-add-one" class="form-simple needs-validation" autocomplete="off" novalidate>
+										<form id="form-add-one" class="form-simple needs-validation" autocomplete="off"
+											novalidate>
 											<div class="form-description-group text-start">
 												<p>За допомогою цієї форми можна:</p>
 												<ul>
@@ -148,8 +161,11 @@
 												</ul>
 											</div>
 											<div class="form-group">
-												<label for="form-add-one-word-input" class="form-group-header">Слово*</label>
-												<input type="text" id="form-add-one-word-input" name="word" class="form-control" placeholder="Слово" value="" data-comma-avoid="true" autofocus required>
+												<label for="form-add-one-word-input"
+													class="form-group-header">Слово*</label>
+												<input type="text" id="form-add-one-word-input" name="word"
+													class="form-control" placeholder="Слово" value=""
+													data-comma-avoid="true" autofocus required>
 												<div class="word-feedback invalid-feedback">
 													Введіть слово!
 												</div>
@@ -159,28 +175,36 @@
 													Переклади* (<span id="form-add-one-translates-count">1</span>)
 												</label>
 												<div class="form-add-one-translates-group">
-													<input type="text" name="translate" class="form-control translate" placeholder="Переклад" value="" translateIndex="0" data-comma-avoid="true" required>
+													<input type="text" name="translate" class="form-control translate"
+														placeholder="Переклад" value="" data-comma-avoid="true"
+														required>
 													<div class="translate-feedback invalid-feedback mb-2">
 														Введіть переклад!
 													</div>
-												</div>	
+												</div>
 											</div>
-											<button type="button" id="form-add-one-translates-add" class="action-btn action-btn-light">Додати переклад</button>
+											<button type="button" id="form-add-one-translates-add"
+												class="action-btn action-btn-light">Додати переклад</button>
 											<div class="form-group">
 												<label for="form-add-one-unit" class="form-group-header">Розділ*</label>
-												<select id="form-add-one-unit" name="unit" data-content="unit" class="mb-2 form-control d-inline w-auto" required>
+												<select id="form-add-one-unit" name="unit" data-content="unit"
+													class="mb-2 form-control d-inline w-auto" required>
 													<option selected disabled value="">Виберіть розділ</option>
 												</select>
-												<button type="button" id="modal-unit-add-link" class="action-btn action-btn-light" data-bs-toggle="modal" data-bs-target="#modal-unit-add">Додати розділ</button>
+												<button type="button" id="modal-unit-add-link"
+													class="action-btn action-btn-light" data-bs-toggle="modal"
+													data-bs-target="#modal-unit-add">Додати розділ</button>
 												<div class="unit-feedback invalid-feedback">
 													Виберіть розділ зі списку!
 												</div>
 											</div>
 											<div class="form-group">
-												<button id="form-add-one-reset" class="action-btn action-btn-dark" type="reset" data-role="reset">Очистити форму</button>
+												<button id="form-add-one-reset" class="action-btn action-btn-dark"
+													type="reset" data-role="reset">Очистити форму</button>
 											</div>
 											<div class="form-submit-group">
-												<input type="submit" id="form-add-one-submit" class="action-btn action-btn-dark" value="Додати">
+												<input type="submit" id="form-add-one-submit"
+													class="action-btn action-btn-dark" value="Додати">
 											</div>
 										</form>
 									</div>
@@ -189,14 +213,19 @@
 											<p>За допомогою імпорту з файлу можна завантажити:</p>
 											<ul>
 												<li>Один та більше текстових файлів з розширенням <b>.txt</b>;</li>
-												<li>Один архів з розширенням <b>.zip</b>, який вміщує файли з розширенням <b>.txt</b>.</li>
+												<li>Один архів з розширенням <b>.zip</b>, який вміщує файли з
+													розширенням <b>.txt</b>.</li>
 											</ul>
 											<p>Особливості вводу:</p>
 											<ul>
-												<li>Назва текстового файлу стане назвою розділу, тому не забудьте її змінити, адже подальша зміна назви розділу неможлива;</li>
-												<li>Символ <b>></b> є обов'язковим, адже він розділяє слово і переклади;</li>
-												<li>Кількість пропусків (пробілів) між словом, перекладами та символом <b>></b> не має значення;</li>
-												<li>Можна вказати тільки одне слово, а перекладів можна один і більше.</li>
+												<li>Назва текстового файлу стане назвою розділу, тому не забудьте її
+													змінити, адже подальша зміна назви розділу неможлива;</li>
+												<li>Символ <b>></b> є обов'язковим, адже він розділяє слово і переклади;
+												</li>
+												<li>Кількість пропусків (пробілів) між словом, перекладами та символом
+													<b>></b> не має значення;</li>
+												<li>Можна вказати тільки одне слово, а перекладів можна один і більше.
+												</li>
 											</ul>
 										</div>
 										<div class="import-file-simulation">
@@ -205,7 +234,7 @@
 												<div class="header-item icon">
 													<i class="fa fa-file-text" aria-hidden="true"></i>
 												</div>
-												<div class="header-item title">[назва розділу].txt:  Блокнот</div>
+												<div class="header-item title">[назва розділу].txt: Блокнот</div>
 											</div>
 											<div class="content">
 												<p>[слово] > [переклад]</p>
@@ -214,7 +243,8 @@
 										</div>
 										<div id="form-add-many-file-log"></div>
 										<div class="form-submit-group">
-											<input type="file" id="form-add-many-file-input" accept=".txt, .zip" multiple>
+											<input type="file" id="form-add-many-file-input" accept=".txt, .zip"
+												multiple>
 											<label for="form-add-many-file-input" class="action-btn action-btn-dark">
 												<span>Імпортувати</span>
 											</label>
@@ -232,23 +262,30 @@
 								</div>
 								<div class="row mx-auto tab-contents">
 									<div class="tab-content">
-										<form id="form-edit-manually" class="form-simple" autocomplete="off" novalidate>	
+										<form id="form-edit-manually" class="form-simple" autocomplete="off" novalidate>
 											<div class="form-description-group text-start">
 												<p>За допомогою цієї форми можна редагувати слово:</p>
 												<p>Особливості:</p>
 												<ul>
-													<li>для швидкого пошуку слова можна вибирати розділ, у якому від знаходиться, але не обов'язково.</li>
+													<li>для швидкого пошуку слова можна вибирати розділ, у якому від
+														знаходиться, але не обов'язково.</li>
 												</ul>
 											</div>
 											<div class="form-group">
-												<label for="form-edit-manually-unit" class="form-group-header mb-3">Розділ, у якому знаходиться шукане слово</label>
-												<select id="form-edit-manually-unit" name="unit" data-content="unit" class="mb-2 form-control d-inline">
+												<label for="form-edit-manually-unit"
+													class="form-group-header mb-3">Розділ, у якому знаходиться шукане
+													слово</label>
+												<select id="form-edit-manually-unit" name="unit" data-content="unit"
+													class="mb-2 form-control d-inline">
 													<option selected value="">Всі розділи</option>
 												</select>
 											</div>
 											<div class="form-group">
-												<label for="form-edit-manually-word" class="form-group-header mb-3">Слово, яке потрібно редагувати*</label>
-												<select id="form-edit-manually-word" name="word" data-content="words" class="mb-2 form-control d-inline" required>
+												<label for="form-edit-manually-word"
+													class="form-group-header mb-3">Слово, яке потрібно
+													редагувати*</label>
+												<select id="form-edit-manually-word" name="word" data-content="words"
+													class="mb-2 form-control d-inline" required>
 													<option selected disabled value="">Виберіть слово</option>
 												</select>
 												<div class="unit-feedback invalid-feedback">
@@ -258,20 +295,23 @@
 											<fieldset>
 												<legend>Що потрібно редагувати у слові*</legend>
 												<div class="form-check">
-													<input type="radio" class="form-check-input" name="form-edit-manually-type" value="0" checked>
-													<label class="form-check-label" for="">
+													<input type="radio" class="form-check-input"
+														name="form-edit-manually-type" value="0" checked>
+													<label class="form-check-label">
 														Слово
 													</label>
 												</div>
 												<div class="form-check">
-													<input type="radio" class="form-check-input" name="form-edit-manually-type" value="1">
-													<label class="form-check-label" for="">
+													<input type="radio" class="form-check-input"
+														name="form-edit-manually-type" value="1">
+													<label class="form-check-label">
 														Переклади
 													</label>
 												</div>
 											</fieldset>
 											<div class="form-submit-group">
-												<input type="submit" id="form-edit-manually-submit" class="action-btn action-btn-dark" value="Редагувати">
+												<input type="submit" id="form-edit-manually-submit"
+													class="action-btn action-btn-dark" value="Редагувати">
 											</div>
 										</form>
 									</div>
@@ -281,14 +321,18 @@
 											<ol>
 												<li>Вибрати потрібне слово у словнику.</li>
 												<li>Навести мишку на текст запису, який хочете редагувати.</li>
-												<li>Виконати подвійний клік, після чого текст перетвориться на поле для вводу.</li>
+												<li>Виконати подвійний клік, після чого текст перетвориться на поле для
+													вводу.</li>
 												<li>Змінити значення на потрібне.</li>
 												<li>Клікнути поза полем для вводу, після чого воно зникне.</li>
 											</ol>
 											<p>Особливості:</p>
 											<ul>
-												<li>якщо ви <b>помилково почали редагування слова</b> і ви не хочете змінювати попереднє значення, то можна просто повністю очистити вміст поля, після чого попереднє значення буде відновлено;</li>
-												<li>якщо ви хочете <b>ввести декілька перекладів</b>, то робити це можна тільки через кому;</li>
+												<li>якщо ви <b>помилково почали редагування слова</b> і ви не хочете
+													змінювати попереднє значення, то можна просто повністю очистити
+													вміст поля, після чого попереднє значення буде відновлено;</li>
+												<li>якщо ви хочете <b>ввести декілька перекладів</b>, то робити це можна
+													тільки через кому;</li>
 											</ul>
 										</div>
 									</div>
@@ -306,7 +350,8 @@
 								</div>
 								<div class="row mx-auto tab-contents">
 									<div class="tab-content">
-										<form id="form-remove-one" class="form-simple needs-validation" autocomplete="off" novalidate>
+										<form id="form-remove-one" class="form-simple needs-validation"
+											autocomplete="off" novalidate>
 											<div class="form-description-group">
 												<p>За допомогою цієї форми можна видалити одиничне слово.</p>
 												<p>Особливості:</p>
@@ -316,22 +361,27 @@
 												</ul>
 											</div>
 											<div class="form-group">
-												<label for="form-remove-one-input" class="form-group-header">Слово*</label>
-												<input type="text" id="form-remove-one-input" name="word" class="form-control" placeholder="Слово" value="" data-comma-avoid="true" required>
+												<label for="form-remove-one-input"
+													class="form-group-header">Слово*</label>
+												<input type="text" id="form-remove-one-input" name="word"
+													class="form-control" placeholder="Слово" value=""
+													data-comma-avoid="true" required>
 												<div class="invalid-feedback">
 													Введіть слово!
 												</div>
 												<div class="valid-feedback">
-													
+
 												</div>
 											</div>
 											<div class="form-submit-group">
-												<input type="submit" id="form-remove-one-submit" class="action-btn action-btn-dark" value="Видалити">
+												<input type="submit" id="form-remove-one-submit"
+													class="action-btn action-btn-dark" value="Видалити">
 											</div>
 										</form>
 									</div>
 									<div class="tab-content">
-										<form id="form-remove-range" class="form-simple needs-validation" autocomplete="off" novalidate>
+										<form id="form-remove-range" class="form-simple needs-validation"
+											autocomplete="off" novalidate>
 											<div class="form-description-group">
 												<p>За допомогою цієї форми можна видалити діапазон слів.</p>
 												<p>Особливості:</p>
@@ -342,53 +392,68 @@
 												</ul>
 											</div>
 											<div class="form-group">
-												<label for="form-remove-range-word1-input" class="form-group-header">Від слова*</label>
-												<input type="text" id="form-remove-range-word1-input" name="word1" class="form-control" placeholder="Слово" value="" data-comma-avoid="true" required>
+												<label for="form-remove-range-word1-input" class="form-group-header">Від
+													слова*</label>
+												<input type="text" id="form-remove-range-word1-input" name="word1"
+													class="form-control" placeholder="Слово" value=""
+													data-comma-avoid="true" required>
 												<div class="invalid-feedback">
 													Введіть слово!
 												</div>
 												<div class="valid-feedback">
-													
+
 												</div>
 											</div>
 											<div class="form-group">
-												<label for="form-remove-range-word2-input" class="form-group-header">До слова (включно)*</label>
-												<input type="text" id="form-remove-range-word2-input" name="word2" class="form-control" placeholder="Слово" value="" data-comma-avoid="true" required>
+												<label for="form-remove-range-word2-input" class="form-group-header">До
+													слова (включно)*</label>
+												<input type="text" id="form-remove-range-word2-input" name="word2"
+													class="form-control" placeholder="Слово" value=""
+													data-comma-avoid="true" required>
 												<div class="invalid-feedback">
 													Введіть слово!
 												</div>
 												<div class="valid-feedback">
-													
+
 												</div>
 											</div>
 											<div class="form-submit-group">
-												<input type="submit" id="form-remove-range-submit" class="action-btn action-btn-dark" value="Видалити">
+												<input type="submit" id="form-remove-range-submit"
+													class="action-btn action-btn-dark" value="Видалити">
 											</div>
 										</form>
 									</div>
 									<div class="tab-content">
-										<form id="form-remove-unit" class="form-simple needs-validation" autocomplete="off" novalidate>
+										<form id="form-remove-unit" class="form-simple needs-validation"
+											autocomplete="off" novalidate>
 											<div class="form-description-group">
-												<p>За допомогою цієї форми можна видалити розділ разом з усіма словами, які знаходяться у ньому.</p>
+												<p>За допомогою цієї форми можна видалити розділ разом з усіма словами,
+													які знаходяться у ньому.</p>
 											</div>
 											<div class="form-group">
-												<label for="form-remove-unit-select" class="form-group-header mb-3">Розділ*</label>
-												<select id="form-remove-unit-select" name="unit" data-content="unit" class="mb-2 form-control d-inline" required>
+												<label for="form-remove-unit-select"
+													class="form-group-header mb-3">Розділ*</label>
+												<select id="form-remove-unit-select" name="unit" data-content="unit"
+													class="mb-2 form-control d-inline" required>
 													<option selected disabled value="">Виберіть розділ</option>
 												</select>
 											</div>
 											<div class="form-submit-group">
-												<input type="submit" id="form-remove-unit-submit" class="action-btn action-btn-dark" value="Видалити">
+												<input type="submit" id="form-remove-unit-submit"
+													class="action-btn action-btn-dark" value="Видалити">
 											</div>
 										</form>
 									</div>
 									<div class="tab-content">
-										<form id="form-clear" class="form-simple needs-validation" autocomplete="off" novalidate>
+										<form id="form-clear" class="form-simple needs-validation" autocomplete="off"
+											novalidate>
 											<div class="form-description-group">
-												<p>За допомогою цієї форми можна видалити всі слова та розділи у словнику, зробивши його порожнім.</p>
+												<p>За допомогою цієї форми можна видалити всі слова та розділи у
+													словнику, зробивши його порожнім.</p>
 											</div>
 											<div class="form-submit-group">
-												<input type="submit" id="form-clear-submit" class="action-btn action-btn-dark" value="Очистити">
+												<input type="submit" id="form-clear-submit"
+													class="action-btn action-btn-dark" value="Очистити">
 											</div>
 										</form>
 									</div>
@@ -398,23 +463,29 @@
 						<button id="accordion-export-header" class="container-fluid tab-header">Експортувати</button>
 						<div class="tab-content">
 							<div class="form-description-group">
-								<p>За допомогою цієї форми можна експортувати словник у вигляді архіву зі всіма розділами</p>
+								<p>За допомогою цієї форми можна експортувати словник у вигляді архіву зі всіма
+									розділами</p>
 								<p>Чому це вигідно робити:</p>
 								<ul>
-									<li><b>для збереження даних:</b> якщо за якихось причин буде збій у програмі, то слова може бути втрачено, а маючи експортований словник, його можна повторно завантажити у програму;</li>
+									<li><b>для збереження даних:</b> якщо за якихось причин буде збій у програмі, то
+										слова може бути втрачено, а маючи експортований словник, його можна повторно
+										завантажити у програму;</li>
 								</ul>
 								<div class="form-submit-group">
-									<input type="submit" id="form-export-submit" class="action-btn action-btn-dark" value="Експортувати">
+									<input type="submit" id="form-export-submit" class="action-btn action-btn-dark"
+										value="Експортувати">
 								</div>
 							</div>
 						</div>
-					</div>		
+					</div>
 				</div>
 				<div id="_statistic" class="main-menu-content">
 					<h2>Статистика</h2>
 					<div id="statistic-table">
 						<div class="empty-vocabulary-placeholder">
-							<div class="col">Пройдіть <span class="link fw-bold" onclick="linkToPage('_game')">тестування</span>, щоб переглянути його результати!</div>
+							<div class="col">Пройдіть <span class="link fw-bold"
+									onclick="linkToPage('_game')">тестування</span>, щоб переглянути його результати!
+							</div>
 						</div>
 					</div>
 				</div>
@@ -432,7 +503,9 @@
 								<div class="table-counter">1</div>
 								<div class="col text-truncate">
 									Випадковість слова і перекладу
-									<i class="px-1 fa fa-info-circle" aria-hidden="true" data-bs-toggle="tooltip" data-bs-placement="left" title="При тестуванні можуть попросити не тільки перекласти слово, а й відтворити його по перекладу"></i>
+									<i class="px-1 fa fa-info-circle" aria-hidden="true" data-bs-toggle="tooltip"
+										data-bs-placement="left"
+										title="При тестуванні можуть попросити не тільки перекласти слово, а й відтворити його по перекладу"></i>
 								</div>
 								<div class="table-counter">
 									<input type="checkbox" id="_questionReverse" class="d-block settings-checkbox">
@@ -442,7 +515,9 @@
 								<div class="table-counter">2</div>
 								<div class="col text-truncate">
 									Миттєва перевірка відповіді кольором
-									<i class="px-1 fa fa-info-circle" aria-hidden="true" data-bs-toggle="tooltip" data-bs-placement="left" title="Якщо налаштування ввімкнене, то фон засвітиться зеленим, якщо відповідь правильна, інакше червоним одразу після відповіді"></i>
+									<i class="px-1 fa fa-info-circle" aria-hidden="true" data-bs-toggle="tooltip"
+										data-bs-placement="left"
+										title="Якщо налаштування ввімкнене, то фон засвітиться зеленим, якщо відповідь правильна, інакше червоним одразу після відповіді"></i>
 								</div>
 								<div class="table-counter">
 									<input type="checkbox" id="_colorHighlight" class="d-block settings-checkbox">
@@ -455,7 +530,9 @@
 								<div class="table-counter">1</div>
 								<div class="col text-truncate">
 									Відображення слів по розділах
-									<i class="px-1 fa fa-info-circle" aria-hidden="true" data-bs-toggle="tooltip" data-bs-placement="left" title="Відображає слова у словнику за розділами, нумеруючи слова у кожному розділі"></i>
+									<i class="px-1 fa fa-info-circle" aria-hidden="true" data-bs-toggle="tooltip"
+										data-bs-placement="left"
+										title="Відображає слова у словнику за розділами, нумеруючи слова у кожному розділі"></i>
 								</div>
 								<div class="table-counter">
 									<input type="checkbox" id="_unit" class="d-block settings-checkbox" checked>
@@ -465,7 +542,9 @@
 								<div class="table-counter">2</div>
 								<div class="col text-truncate">
 									Сортування слів (за зростанням)
-									<i class="px-1 fa fa-info-circle" aria-hidden="true" data-bs-toggle="tooltip" data-bs-placement="left" title="Сортує слова за зростанням у словнику, якщо включені розділи, інакше сортує по назвах розділів, а також у випадаючих списках"></i>
+									<i class="px-1 fa fa-info-circle" aria-hidden="true" data-bs-toggle="tooltip"
+										data-bs-placement="left"
+										title="Сортує слова за зростанням у словнику, якщо включені розділи, інакше сортує по назвах розділів, а також у випадаючих списках"></i>
 								</div>
 								<div class="table-counter">
 									<input type="checkbox" id="_sort" class="d-block settings-checkbox">
@@ -476,7 +555,8 @@
 				</div>
 			</div>
 		</main>
-		<footer>2019-<span class="current-year"></span> &copy; <a href="https://github.com/mhevyk" class="link" target="blank">Max Hevyk</a></footer>
+		<footer>2019-<span class="current-year"></span> &copy; <a href="https://github.com/mhevyk" class="link"
+				target="blank">Max Hevyk</a></footer>
 	</div>
 
 
@@ -491,7 +571,8 @@
 					<form id="form-unit-add" class="form-simple needs-validation" autocomplete="off" novalidate>
 						<div class="form-group my-0">
 							<label for="form-unit-add-input" class="form-group-header">Назва розділу</label>
-							<input type="text" id="form-unit-add-input" name="unitName" class="form-control" placeholder="Назва розділу" value="" data-comma-avoid="true" required>
+							<input type="text" id="form-unit-add-input" name="unitName" class="form-control"
+								placeholder="Назва розділу" value="" data-comma-avoid="true" required>
 							<div class="invalid-feedback">
 								Введіть назву розділу!
 							</div>
@@ -499,7 +580,8 @@
 					</form>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="modal-cancel action-btn action-btn-light" class="action-btn action-btn-light" data-bs-dismiss="modal">Скасувати</button>
+					<button type="button" class="modal-cancel action-btn action-btn-light"
+						data-bs-dismiss="modal">Скасувати</button>
 					<button type="submit" id="form-unit-add-submit" class="action-btn action-btn-dark">Додати</button>
 				</div>
 			</div>
@@ -508,19 +590,22 @@
 	<div class="modal fade" id="modal-confirm" tabindex="-1" aria-labelledby="modal-confirm-label" aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered">
 			<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="modal-title" id="modal-confirm-label">Повідомлення з цієї сторінки</h5>
-				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-			</div>
-			<div class="modal-body">
-				
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="action-btn action-btn-light modal-cancel" data-bs-dismiss="modal">Скасувати</button>
-				<button type="button" id="modal-confirm-submit" class="action-btn action-btn-dark modal-submit">Видалити</button>
-			</div>
+				<div class="modal-header">
+					<h5 class="modal-title" id="modal-confirm-label">Повідомлення з цієї сторінки</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="action-btn action-btn-light modal-cancel"
+						data-bs-dismiss="modal">Скасувати</button>
+					<button type="button" id="modal-confirm-submit"
+						class="action-btn action-btn-dark modal-submit">Видалити</button>
+				</div>
 			</div>
 		</div>
 	</div>
 </body>
+
 </html>
